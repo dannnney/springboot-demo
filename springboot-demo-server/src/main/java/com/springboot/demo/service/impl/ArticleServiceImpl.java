@@ -6,6 +6,7 @@ import com.springboot.demo.repository.ArticleRepository;
 import com.springboot.demo.repository.UserRepository;
 import com.springboot.demo.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
+  @Cacheable(cacheNames = "article", key = "#userId + '_' + #page + '_' + #size")
   public PagedList<Article> listByUserId(Long userId, int page, int size) {
     Page<Article> articlePage = articleRepository.findByUserId(userId, new PageRequest(page, size));
     PagedList<Article> pagedList = new PagedList<>();
