@@ -1,0 +1,16 @@
+entity UserEntity {
+	id String
+    nickname String
+    password String
+    age Int
+}
+
+entity CommentEntity {
+	id String
+    user UserEntity
+    content String
+}
+
+relationship OneToMany {
+	UserEntity to CommentEntity
+}
