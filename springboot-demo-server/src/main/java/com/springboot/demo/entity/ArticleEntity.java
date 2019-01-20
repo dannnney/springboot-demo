@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -16,14 +15,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "ArticleEntity", indexes = {
-    @Index(name = "idx_user_id", columnList = "user_id")
+    @Index(name = "idx_user_id", columnList = "userId")
 })
 public class ArticleEntity implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @ManyToOne
-  private UserEntity user;
+  private Long userId;
   private String content;
 }

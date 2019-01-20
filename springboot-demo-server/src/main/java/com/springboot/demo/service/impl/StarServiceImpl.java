@@ -58,7 +58,7 @@ public class StarServiceImpl implements StarService {
     }
 
     StarEntity starEntity = starMapper.toEntity(starModel);
-    starEntity.setUser(requestHolder.getUser());
+    starEntity.setUserId(requestHolder.getUserId());
     StarEntity db = starRepository.save(starEntity);
     return starMapper.toModel(db);
   }
@@ -70,7 +70,7 @@ public class StarServiceImpl implements StarService {
       return;
     }
     StarEntity starEntity = starMapper.toEntity(starModel);
-    starRepository.deleteByUserAndTypeAndContentId(requestHolder.getUser(),
+    starRepository.deleteByUserIdAndTypeAndContentId(requestHolder.getUserId(),
         starEntity.getType(), starEntity.getContentId());
   }
 }

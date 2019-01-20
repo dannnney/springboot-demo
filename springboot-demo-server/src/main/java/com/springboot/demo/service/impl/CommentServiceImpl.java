@@ -11,7 +11,6 @@ import com.springboot.demo.repository.CommentRepository;
 import com.springboot.demo.repository.StarRepository;
 import com.springboot.demo.service.CommentService;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,9 +47,9 @@ public class CommentServiceImpl implements CommentService {
       throw new RuntimeException(articleId + " not found");
     }
     List<CommentEntity> commentEntities =
-        commentRepository.findByArticle(articleEntity)
+        commentRepository.findByArticleId(articleId)
             .stream()
-            .filter(commentEntity -> Objects.isNull(commentEntity.getParent()))
+            .filter(commentEntity -> commentEntity.getParentId() == null)
             .collect(Collectors.toList());
     return toCommentModels(commentEntities);
   }
@@ -61,7 +60,7 @@ public class CommentServiceImpl implements CommentService {
     if (parentEntity == null) {
       throw new RuntimeException(parentId + " not found");
     }
-    List<CommentEntity> commentEntities = commentRepository.findByParent(parentEntity);
+    List<CommentEntity> commentEntities = commentRepository.findByParentId(parentId);
     return toCommentModels(commentEntities);
   }
 
@@ -71,7 +70,7 @@ public class CommentServiceImpl implements CommentService {
       commentModel.setStarCount(
           starRepository.countByTypeAndContentId(StarEntity.COMMENT, commentModel.getId()));
       commentModel.setStared(starRepository
-          .findByUserAndTypeAndContentId(requestHolder.getUser(), StarEntity.COMMENT,
+          .findByUserIdAndTypeAndContentId(requestHolder.getUserId(), StarEntity.COMMENT,
               commentModel.getId()) != null);
     }
     return commentModels;
@@ -86,7 +85,7 @@ public class CommentServiceImpl implements CommentService {
       }
     }
     CommentEntity commentEntity = commentMapper.toEntity(commentModel);
-    commentEntity.setUser(requestHolder.getUser());
+    commentEntity.setUserId(requestHolder.getUserId());
     CommentEntity db = commentRepository.save(commentEntity);
     return commentMapper.toModel(db);
   }

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 public class RequestHolder implements Serializable {
 
   private UserEntity user;
+  private Long userId;
   private Map<String, Object> context;
 
   public void putContextObject(String key, Object value) {

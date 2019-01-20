@@ -1,7 +1,6 @@
 package com.springboot.demo.repository;
 
 import com.springboot.demo.entity.ArticleEntity;
-import com.springboot.demo.entity.UserEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Long> {
 
-  List<ArticleEntity> findByUser(UserEntity user);
+  List<ArticleEntity> findByUserId(Long userId);
 
 }
