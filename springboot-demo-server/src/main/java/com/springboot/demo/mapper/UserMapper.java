@@ -1,7 +1,7 @@
 package com.springboot.demo.mapper;
 
-import com.springboot.demo.dto.UserDto;
-import com.springboot.demo.entity.User;
+import com.springboot.demo.entity.UserEntity;
+import com.springboot.demo.model.UserModel;
 import org.mapstruct.Mapper;
 
 /**
@@ -10,8 +10,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-  UserDto toDto(User user);
+  UserModel toModel(UserEntity userEntity);
 
-  User toEntity(UserDto userDto);
+  UserEntity toEntity(UserModel userModel);
 
 }

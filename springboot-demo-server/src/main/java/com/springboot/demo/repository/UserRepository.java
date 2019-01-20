@@ -1,6 +1,6 @@
 package com.springboot.demo.repository;
 
-import com.springboot.demo.entity.User;
+import com.springboot.demo.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
  * @author yemingfeng
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-  User findByUsername(String username);
+  UserEntity findByUsername(String username);
 
 }

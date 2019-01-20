@@ -1,8 +1,8 @@
 package com.springboot.demo.mapper;
 
-import com.springboot.demo.data.PagedList;
-import com.springboot.demo.dto.ArticleDto;
-import com.springboot.demo.entity.Article;
+import com.springboot.demo.entity.ArticleEntity;
+import com.springboot.demo.model.ArticleModel;
+import java.util.List;
 import org.mapstruct.Mapper;
 
 /**
@@ -11,10 +11,10 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ArticleMapper {
 
-  ArticleDto toDto(Article article);
+  ArticleEntity toEntity(ArticleModel articleModel);
 
-  Article toEntity(ArticleDto articleDto);
+  ArticleModel toModel(ArticleEntity articleEntity);
 
-  PagedList<ArticleDto> toDtos(PagedList<Article> pagedList);
+  List<ArticleModel> toModels(List<ArticleEntity> articleEntities);
 
 }

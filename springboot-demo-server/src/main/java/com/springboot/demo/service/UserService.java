@@ -1,6 +1,6 @@
 package com.springboot.demo.service;
 
-import com.springboot.demo.entity.User;
+import com.springboot.demo.model.UserModel;
 
 /**
  * @author yemingfeng
@@ -8,8 +8,8 @@ import com.springboot.demo.entity.User;
 
 public interface UserService {
 
-  User login(User user);
+  UserModel login(UserModel userModel);
 
-  User register(User user);
+  UserModel register(UserModel userModel);
 
 }

@@ -1,15 +1,15 @@
 package com.springboot.demo.service;
 
-import com.springboot.demo.data.PagedList;
-import com.springboot.demo.entity.Article;
+import com.springboot.demo.model.ArticleModel;
+import java.util.List;
 
 /**
  * @author yemingfeng
  */
 public interface ArticleService {
 
-  Article save(Article article);
+  ArticleModel save(ArticleModel articleModel);
 
-  PagedList<Article> listByUserId(Long userId, int page, int size);
+  List<ArticleModel> listByUser();
 
 }
