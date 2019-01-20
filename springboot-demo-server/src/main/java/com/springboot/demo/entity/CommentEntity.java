@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -15,17 +16,20 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "CommentEntity", indexes = {
-    @Index(name = "idx_user_id", columnList = "userId"),
-    @Index(name = "idx_parent_id", columnList = "parentId"),
-    @Index(name = "idx_article_id", columnList = "articleId")
+    @Index(name = "idx_user_id", columnList = "user_id"),
+    @Index(name = "idx_parent_id", columnList = "parent_id"),
+    @Index(name = "idx_article_id", columnList = "article_id")
 })
 public class CommentEntity implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Long userId;
-  private Long parentId;
-  private Long articleId;
+  @ManyToOne
+  private UserEntity user;
+  @ManyToOne
+  private CommentEntity parent;
+  @ManyToOne
+  private ArticleEntity article;
   private String content;
 }

@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
     List<CommentEntity> commentEntities =
         commentRepository.findByArticleId(articleId)
             .stream()
-            .filter(commentEntity -> commentEntity.getParentId() == null)
+            .filter(commentEntity -> commentEntity.getParent() == null)
             .collect(Collectors.toList());
     return toCommentModels(commentEntities);
   }
@@ -85,7 +85,7 @@ public class CommentServiceImpl implements CommentService {
       }
     }
     CommentEntity commentEntity = commentMapper.toEntity(commentModel);
-    commentEntity.setUserId(requestHolder.getUserId());
+    commentEntity.setUser(requestHolder.getUser());
     CommentEntity db = commentRepository.save(commentEntity);
     return commentMapper.toModel(db);
   }

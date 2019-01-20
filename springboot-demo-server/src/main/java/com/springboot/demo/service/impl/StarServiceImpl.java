@@ -58,7 +58,7 @@ public class StarServiceImpl implements StarService {
     }
 
     StarEntity starEntity = starMapper.toEntity(starModel);
-    starEntity.setUserId(requestHolder.getUserId());
+    starEntity.setUser(requestHolder.getUser());
     StarEntity db = starRepository.save(starEntity);
     return starMapper.toModel(db);
   }

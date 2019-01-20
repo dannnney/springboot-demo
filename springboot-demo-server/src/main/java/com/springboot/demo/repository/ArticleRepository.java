@@ -3,6 +3,7 @@ package com.springboot.demo.repository;
 import com.springboot.demo.entity.ArticleEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Long> {
 
+  @Query(value = "SELECT * FROM User WHERE userId = ?1", nativeQuery = true)
   List<ArticleEntity> findByUserId(Long userId);
 
 }
