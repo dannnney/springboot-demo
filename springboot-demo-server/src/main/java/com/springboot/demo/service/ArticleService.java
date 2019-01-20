@@ -10,6 +10,6 @@ public interface ArticleService {
 
   ArticleModel save(ArticleModel articleModel);
 
-  List<ArticleModel> listByUser();
+  List<ArticleModel> listByUserId(Long userId);
 
 }

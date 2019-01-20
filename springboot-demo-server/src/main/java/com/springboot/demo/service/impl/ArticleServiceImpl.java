@@ -50,8 +50,8 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public List<ArticleModel> listByUser() {
-    List<ArticleEntity> articleEntities = articleRepository.findByUserId(requestHolder.getUserId());
+  public List<ArticleModel> listByUserId(Long userId) {
+    List<ArticleEntity> articleEntities = articleRepository.findByUserId(userId);
     List<ArticleModel> articleModels = new ArrayList<>();
     for (ArticleEntity articleEntity : articleEntities) {
       ArticleModel articleModel = articleMapper.toModel(articleEntity);
