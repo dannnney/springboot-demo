@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Long> {
 
-  @Query(value = "SELECT * FROM User WHERE userId = ?1", nativeQuery = true)
+  @Query(value = "SELECT * FROM Article WHERE userId = ?1", nativeQuery = true)
   List<ArticleEntity> findByUserId(Long userId);
 
 }

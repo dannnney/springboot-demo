@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "UserEntity", indexes = {
+@Table(name = "User", indexes = {
     @Index(name = "idx_username", columnList = "username")
 })
 public class UserEntity implements Serializable {

@@ -30,9 +30,6 @@ public class RequestInterceptor implements HandlerInterceptor {
       requestHolder.setUser(userRepository.findOne(Long.valueOf(request.getParameter("userId"))));
       requestHolder.setUserId(Long.valueOf(request.getParameter("userId")));
     }
-    if (requestHolder.getUser() == null) {
-      throw new RuntimeException("user not found");
-    }
     return true;
   }
 
