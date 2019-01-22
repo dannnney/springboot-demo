@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +57,7 @@ public class ArticleServiceImpl implements ArticleService {
     for (ArticleEntity articleEntity : articleEntities) {
       ArticleModel articleModel = articleMapper.toModel(articleEntity);
       fillArticleModel(articleModel);
+      articleModels.add(articleModel);
     }
     return articleModels;
   }
